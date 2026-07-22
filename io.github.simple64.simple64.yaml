@@ -1,0 +1,142 @@
+app-id: io.github.simple64.simple64.vru
+runtime: org.kde.Platform
+runtime-version: '6.8'
+sdk: org.kde.Sdk
+command: gui-wrapper.sh
+rename-icon: simple64
+finish-args:
+  - --socket=wayland
+  - --socket=fallback-x11
+  - --share=ipc
+  - --socket=pulseaudio
+  - --share=network
+  - --device=all
+  - --talk-name=org.freedesktop.ScreenSaver
+  - --env=QT_VULKAN_LIB=libvulkan.so.1
+  - --filesystem=xdg-run/app/com.discordapp.Discord:create
+modules:
+  - shared-modules/libusb/libusb.json
+
+  - name: 7zip
+    buildsystem: simple
+    subdir: CPP/7zip/Bundles/Alone2
+    build-commands:
+      - make -j -f makefile.gcc
+      - install -D ./_o/7zz -t /app/bin
+      - ln -s /app/bin/7zz /app/bin/7za
+    sources:
+      - type: archive
+        url: https://downloads.sourceforge.net/sevenzip/7z2408-src.tar.xz
+        sha256: aa04aac906a04df59e7301f4c69e9f48808e6c8ecae4eb697703a47bfb0ac042
+        strip-components: 0
+
+  - name: hidapi
+    buildsystem: cmake-ninja
+    builddir: true
+    config-opts:
+      - -DCMAKE_BUILD_TYPE=Release
+    sources:
+      - type: git
+        url: https://github.com/libusb/hidapi.git
+        tag: hidapi-0.14.0
+
+  - name: SDL2_net
+    buildsystem: cmake-ninja
+    builddir: true
+    config-opts:
+      - -DCMAKE_BUILD_TYPE=Release
+    sources:
+      - type: git
+        url: https://github.com/libsdl-org/SDL_net.git
+        tag: release-2.2.0
+
+  - name: discord-sdk-x86_64
+    only-arches: [x86_64]
+    buildsystem: simple
+    build-commands:
+      - mkdir -p /app/discord
+      - mv lib /app/discord
+    sources:
+      - type: archive
+        url: https://dl-game-sdk.discordapp.net/2.5.6/discord_game_sdk.zip
+        sha256: 426eb5fa70647d884f461c63825b63668349efb4bc68a16e70bc4a24e119b92e
+        strip-components: 0
+
+  - name: discord-sdk-aarch64
+    only-arches: [aarch64]
+    buildsystem: simple
+    build-commands:
+      - mkdir -p /app/discord
+
+  - name: vosk-x86_64
+    only-arches: [x86_64]
+    buildsystem: simple
+    build-commands:
+      - mv vosk-linux-x86_64-0.3.45 /app/vosk
+    sources:
+      - type: archive
+        url: https://github.com/alphacep/vosk-api/releases/download/v0.3.45/vosk-linux-x86_64-0.3.45.zip
+        sha256: bbdc8ed85c43979f6443142889770ea95cbfbc56cffb5c5dcd73afa875c5fbb2
+        strip-components: 0
+
+  - name: vosk-aarch64
+    only-arches: [aarch64]
+    buildsystem: simple
+    build-commands:
+      - mv vosk-linux-aarch64-0.3.45 /app/vosk
+    sources:
+      - type: archive
+        url: https://github.com/alphacep/vosk-api/releases/download/v0.3.45/vosk-linux-aarch64-0.3.45.zip
+        sha256: 45e95d37755deb07568e79497d7feba8c03aee5a9e071df29961aa023fd94541
+        strip-components: 0
+
+  - name: cheats
+    buildsystem: simple
+    build-commands:
+      - cp cheats.json /app
+    sources:
+      - type: file
+        url: https://raw.githubusercontent.com/simple64/cheat-parser/e4c692b62d8f935d5c19c6c9b2011ab78e1c79d6/cheats.json
+        sha256: ad2ff831d8bed7c0b6cb0b4ce675b65da2640b56272993dce18750de609f1125
+
+  - name: simple64
+    buildsystem: simple
+    build-options:
+      cflags-override: true
+      cppflags-override: true
+      cxxflags-override: true
+      ldflags-override: true
+    build-commands:
+      - mv /app/discord .
+      - mv /app/vosk .
+      - mv /app/cheats.json .
+      - ./build.sh
+      - mv simple64 /app
+      - ln -s /app/simple64/simple64-gui /app/bin/simple64-gui
+    sources:
+      - type: git
+        url: https://github.com/simple64/simple64.git
+        tag: v2024.12.1
+        commit: b49e10e5a90aa74ff3d0871d38cf2840ed3effe7
+        x-checker-data:
+          is-main-source: true
+          type: git
+          tag-pattern: ^(v[\d.]+)$
+
+  - name: finalize
+    buildsystem: simple
+    build-commands:
+      - install -D simple64.svg -t /app/share/icons/hicolor/scalable/apps
+      - install -D io.github.simple64.simple64.desktop /app/share/applications/io.github.simple64.simple64.vru.desktop
+      - install -D io.github.simple64.simple64.metainfo.xml /app/share/metainfo/io.github.simple64.simple64.vru.metainfo.xml
+      - install -D gui-wrapper.sh -t /app/bin
+    sources:
+      - type: file
+        url: https://raw.githubusercontent.com/simple64/simple64-gui/88fc6e90d7808de45cd538540b524a49e2388e4e/icons/simple64.svg
+        sha256: 7794c4ab8b296c0390a14287d823b10d43b70f07860620902804bfea2cc9e78b
+      - type: file
+        path: io.github.simple64.simple64.desktop
+      - type: file
+        path: io.github.simple64.simple64.metainfo.xml
+      - type: file
+        path: gui-wrapper.sh
