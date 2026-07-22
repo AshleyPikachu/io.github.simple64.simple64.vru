@@ -8,7 +8,7 @@ This is a fork of [Simple64's Flathub release](https://github.com/flathub/io.git
 * flatpak run org.flatpak.Builder --user --install --force-clean build-dir io.github.simple64.simple64.yaml
 
 # How to Run It
-1. Once installed properly use the terminal use this command.
+1. Once installed properly use the terminal use this command or pull it up from the menu editor.
 * flatpak run io.github.simple64.simple64.vru
 
 # How to Build it
