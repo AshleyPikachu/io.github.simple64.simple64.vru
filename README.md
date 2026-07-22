@@ -18,7 +18,7 @@ This is a fork of [Simple64's Flathub release](https://github.com/flathub/io.git
 # Other Notes
 1. This was built with flatpak builder flatpak.
 2. I recommend using a program like [cartridges](https://github.com/kra-mo/cartridges) to organize your games.
-3. The program will still be called Simple64, use a menu editor to change it's name.
+3. The program will still be called Simple64, use a menu editor to one of their names.
 
 Menu Editors
 * Menu Editor (KDE Plasma)
