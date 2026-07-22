@@ -8,7 +8,7 @@ This is a fork of [Simple64's Flathub release](https://github.com/flathub/io.git
 * flatpak run org.flatpak.Builder --user --install --force-clean build-dir io.github.simple64.simple64.yaml
 
 # How to Run It
-1. Once installed properly use the terminal use this command or pull it up from the menu editor.
+1. Once installed properly use the terminal use this command run it.
 * flatpak run io.github.simple64.simple64.vru
 
 # How to Build it
@@ -17,7 +17,8 @@ This is a fork of [Simple64's Flathub release](https://github.com/flathub/io.git
 
 # Other Notes
 1. You can change the applications name and icon with your distro's built in menu editor or plenty other options like these.
-2. This was built with flatpak builder flatpak
+2. This was built with flatpak builder flatpak.
+3. I recommend using a program like [cartridges](https://github.com/kra-mo/cartridges) to organize your games.
 
 Menu Editors
 * Menu Editor (KDE Plasma)
