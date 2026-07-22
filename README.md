@@ -1,6 +1,5 @@
 # Why This Flatpak Fork Exists
-This is a fork of the [io.github.simple64.simple64](https://github.com/flathub/io.github.simple64.simple64) Flathub Github, it was made for installing 2 copies of [Simlpe64](https://github.com/simple64) at once as turning the VRU on and off can be annoying with only 2 retail games supporting it.
-This modification was quick and dirty and provides no support whatsoever. It was made with help from people in the linux community and the guidance of Gemini Ai.
+This is a fork of [Simple64's Flathub release](https://github.com/flathub/io.github.simple64.simple64), and it was made for installing 2 copies of [Simple64](https://github.com/simple64) flatpak at once. That way the VRU can be left on for 2 games that support it. This is quick and dirty workaround with no support whatsoever, it was made with help from people in the linux community and the guidance of Gemini Ai.
 
 # How to Install
 1. Download the contents of this github.
