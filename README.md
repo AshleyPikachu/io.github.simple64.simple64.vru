@@ -13,7 +13,7 @@ This is a fork of [Simple64's Flathub release](https://github.com/flathub/io.git
 * flatpak run io.github.simple64.simple64.vru
 
 # How to Build it
-1. Use this command for building it if youo need to make any modifications.
+1. Use this command for building it if you need to make any modifications.
   * flatpak run org.flatpak.Builder --user --install-deps-from=flathub --force-clean build-dir io.github.simple64.simple64.yaml
 
 # Other Notes
