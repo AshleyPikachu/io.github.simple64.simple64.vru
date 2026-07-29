@@ -1,8 +1,8 @@
 # Why This Flatpak Fork Exists
-This is a fork of [Simple64's Flathub release](https://github.com/flathub/io.github.simple64.simple64), and it was made for installing 2 copies of [Simple64](https://github.com/simple64) flatpak at once without them auto updating to Gopher64. That way both emulators can be used, along with a VRU copy for the 2 games that support it without having to turn it off. This is quick and dirty workaround with no support whatsoever, it was made with help from people in the linux community and the guidance of Gemini Ai.
+This is a fork of [Simple64's Flathub release](https://github.com/flathub/io.github.simple64.simple64), and it was made for installing multiple copies of [Simple64](https://github.com/simple64) flatpak at once without them auto updating to Gopher64. That way both emulators can be used, along with config settings per emulator. This is quick and dirty workaround with no support whatsoever, it was made with help from people in the linux community and the guidance of Gemini Ai.
 
 # How to Install
-1. Download a release of this github, whether thats Solo or VRU.
+1. Download a release of this github, whether thats Solo, Tpak, or VRU.
 2. Open the Terminal in the folder of the download.
 3. Run this command to install it
 * flatpak run org.flatpak.Builder --user --install --force-clean build-dir io.github.simple64.simple64.yaml
@@ -10,6 +10,7 @@ This is a fork of [Simple64's Flathub release](https://github.com/flathub/io.git
 # How to Run It
 1. Once installed properly use the terminal and the matching command run it.
 * flatpak run io.github.simple64.simple64.solo
+* flatpak run io.github.simple64.simple64.tpak
 * flatpak run io.github.simple64.simple64.vru
 
 # How to Build it
